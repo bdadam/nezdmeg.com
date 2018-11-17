@@ -1,0 +1,48 @@
+{
+    "name": "nezdmeg.com",
+    "version": "1.0.0",
+    "description": "",
+    "main": "index.js",
+    "scripts": {
+        "dev": "gatsby develop",
+        "build": "gatsby build",
+        "serve": "gatsby serve"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/bdadam/nezdmeg.com.git"
+    },
+    "keywords": [],
+    "author": "",
+    "license": "ISC",
+    "bugs": {
+        "url": "https://github.com/bdadam/nezdmeg.com/issues"
+    },
+    "homepage": "https://github.com/bdadam/nezdmeg.com#readme",
+    "dependencies": {
+        "@zeit/next-sass": "^1.0.1",
+        "eslint": "^5.4.0",
+        "eslint-config-prettier": "^3.3.0",
+        "eslint-plugin-jest": "^22.0.0",
+        "eslint-plugin-prettier": "^3.0.0",
+        "eslint-plugin-react": "^7.11.1",
+        "fs-extra": "^7.0.0",
+        "gatsby": "^2.0.50",
+        "gatsby-plugin-catch-links": "^2.0.8",
+        "gatsby-plugin-manifest": "^2.0.9",
+        "gatsby-plugin-offline": "^2.0.15",
+        "gatsby-plugin-react-helmet": "^3.0.2",
+        "gatsby-source-filesystem": "^2.0.8",
+        "gatsby-transformer-remark": "^2.1.12",
+        "lodash": "^4.17.11",
+        "markdown-it": "^8.4.2",
+        "next": "^7.0.2",
+        "next-compose-plugins": "^2.1.1",
+        "node-sass": "^4.9.4",
+        "prettier": "^1.15.2",
+        "react": "^16.6.0",
+        "react-dom": "^16.6.0",
+        "react-helmet": "^5.2.0",
+        "speakingurl": "^14.0.1"
+    }
+}
