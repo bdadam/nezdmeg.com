@@ -5,7 +5,7 @@ date: 2015-01-09 12:00
 teaser: Ez a kutya nagyon szerencsés. Egy forró kátránnyal teli gödörbe esett. Még ki tudott mászni, de aztán a kátrány kihűlt és megkötött, a mozgás pedig teljesen lehetetlenné vált számára.
 ---
 
-https://www.youtube.com/watch?v=25Jo-DPfYWg
+`youtube: https://www.youtube.com/watch?v=25Jo-DPfYWg`
 
 Ekkor találta meg egy járókelő az addigra már teljesen mozgásképtelen kutyust. Szerencsére az állatvédőket hívta, akik gyorsan megtalálták a megkötött kátrány ellenszerét: **növényi olaj**. Hosszasan mosdatták vele, amíg újra meg nem tisztult a bundája.
 

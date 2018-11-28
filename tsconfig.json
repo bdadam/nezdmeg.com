@@ -1,0 +1,29 @@
+// {
+//     "compileOnSave": true,
+//     "compilerOptions": {
+//         "module": "commonjs",
+//         "target": "es2018",
+//         "sourceMap": true,
+//         "moduleResolution": "node",
+//         "esModuleInterop": true,
+//         "allowSyntheticDefaultImports": true,
+//         "outDir": "dist-server",
+//         // "strict": true,
+//         "noImplicitAny": true,
+//         "lib": ["es2018", "webworker", "dom"],
+//         "skipLibCheck": true,
+//         "jsx": "react",
+//         "noUnusedLocals": true,
+//         "noUnusedParameters": true,
+//         "resolveJsonModule": true,
+//         "importHelpers": true,
+//         "noEmit": true,
+//         "allowJs": true,
+//         "checkJs": true
+//     },
+//     "include": ["src"],
+//     "exclude": ["node_modules"],
+//     "typeAcquisition": {
+//         "enable": true
+//     }
+// }
