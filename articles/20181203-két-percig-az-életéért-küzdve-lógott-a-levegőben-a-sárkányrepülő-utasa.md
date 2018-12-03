@@ -1,18 +1,17 @@
 ---
 title: Két percig az életéért küzdve lógott a levegőben a sárkányrepülő utasa
-slug: abcd
 date: '2018-12-03 23:11'
 teaser: >-
-  Majdnem végzetes fordulatot vett egy turista számára a svájci vakáció első
-  napja.
-description: description
+    Majdnem végzetes fordulatot vett egy turista számára a svájci vakáció első
+    napja.
 tags:
-  - vakáció
-  - repülés
-  - bátorság
-  - kitartás
-  - hiba
+    - vakáció
+    - repülés
+    - bátorság
+    - kitartás
+    - hiba
 ---
+
 Egyszerű tandem sárkányrepülőzést tervezett, de sajnos a pilóta elfelejtette bekötni az utasát. Mikor ezt észrevették már késő volt, a levegőben volt a sárkányrepülő.
 
 https://www.youtube.com/watch?v=dLBJA8SlH2w
