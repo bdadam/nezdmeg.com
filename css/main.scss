@@ -1,0 +1,31 @@
+@import 'reset';
+
+html {
+    font-size: 100%;
+    min-height: 100%;
+    overflow-y: scroll;
+}
+
+body {
+    font-size: 1rem;
+    font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica, Arial, sans-serif, Apple Color Emoji,
+        Segoe UI Emoji, Segoe UI Symbol;
+    color: #333;
+    line-height: 1.36;
+}
+
+.page-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+@media (min-width: 1240px) {
+    .page-container {
+        padding: 0;
+    }
+}
+
+table {
+    width: 100%;
+}

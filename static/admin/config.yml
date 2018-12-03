@@ -13,10 +13,11 @@ collections:
     folder: articles
     create: true
     delete: false
-    slug: '{{year}}-{{month}}-{{day}}_{{slug}}'
+    slug: '{{year}}{{month}}{{day}}-{{slug}}'
     fields:
       - { label: 'Title', name: 'title', widget: 'string' }
       - { label: 'Slug', name: 'slug', widget: 'string' }
       - { label: 'Date', name: 'datetime', widget: 'date', format: 'YYYY-MM-DD HH:mm' }
       - { label: 'Teaser', name: 'teaser', widget: 'markdown' }
+      - { label: 'Description', name: 'description', widget: 'text' }
       - { label: 'Body', name: 'body', widget: 'markdown' }
