@@ -4,7 +4,7 @@ const items = require('./home-content.json');
 
 // console.log(content);
 
-items.forEach(async item => {
+items.forEach(item => {
     const filename = `articles/${item.filename}.md`;
 
     if (fs.existsSync(filename)) {

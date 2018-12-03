@@ -1,7 +1,5 @@
 var links = [...document.querySelectorAll('a.article-item')]; //;.map(i => i.href.replace('http://nezdmeg.com/cikkek/', ''))
 
-var datesTaken = new Set();
-
 var x = links.map((link, idx) => {
     const slug = link.href.replace('http://nezdmeg.com/cikkek/', '');
     const title = link.querySelector('h2').innerText;
