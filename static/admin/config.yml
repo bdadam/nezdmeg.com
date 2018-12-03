@@ -23,3 +23,5 @@ collections:
       - { label: 'Teaser', name: 'teaser', widget: 'text' }
       - { label: 'Description', name: 'description', widget: 'text' }
       - { label: 'Body', name: 'body', widget: 'markdown' }
+      # - { label: 'Category', name: 'category', widget: 'select', options: ['Élet', 'Jármű', 'Sport'] }
+      - { label: 'Tags', name: 'tags', widget: 'list' }
