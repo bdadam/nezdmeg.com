@@ -1,5 +1,4 @@
 const { promisify } = require('util');
-const { URL } = require('url');
 const fs = require('fs-extra');
 const glob = promisify(require('glob'));
 const matter = require('gray-matter');
@@ -7,72 +6,27 @@ const marked = require('marked');
 const speakingurl = require('speakingurl');
 const moment = require('moment');
 const consola = require('consola');
+const unified = require('unified');
+const rehypeParse = require('rehype-parse');
+const rehypeMinify = require('rehype-preset-minify');
 const pick = require('lodash/pick');
 const omit = require('lodash/omit');
-
-const renderer = new marked.Renderer();
-
-// renderer.codespan = code => {
-//     const matches = code.match(/[\s]*youtube:[\s]*([\S]+)[\s]*/);
-
-//     if (matches && matches[1]) {
-//         return `<div>${matches[1]}</div>`;
-//     }
-
-//     return `<code>${code}</code>`;
-// };
-
-// renderer.link = (href, title, text) => {
-//     const x = new URL(href, 'https://nezdmeg.com/');
-//     const internal = x.hostname === 'nezdmeg.com';
-
-//     if (internal) {
-//         return `<a href="${href}" title="${title}">${text}</a>`;
-//     }
-
-//     return `<a href="${href}" title="${title || ''}" target="_blank" rel="external noreferrer">${text}</a>`;
-// };
+const sortBy = require('lodash/sortBy');
 
 const convertContentToHtml = obj => {
-    const remark = require('remark');
-    // const md = require('remark-parse');
-    // const frontmatter = require('remark-frontmatter');
-    // const parseFrontmatter = require('remark-parse-yaml');
-    const unified = require('unified');
-    // const parse = require('remark-parse');
+    const html = marked(obj.content);
 
-    // const processor = unified()
-    //     .use(md)
-    //     .use(frontmatter)
-    //     .use(parseFrontmatter);
-
-    const html = require('remark-html');
-    const processor = remark().use(html);
-    // .use(frontmatter)
-    // .use(parseFrontmatter);
-
-    const ast = processor.runSync(processor.parse(obj.content));
-
-    const x = node => {
-        return { ...omit(node, 'position'), children: node.children && node.children.map(x) };
+    const cleanAst = node => {
+        return { ...omit(node, 'position'), children: node.children && node.children.map(cleanAst) };
     };
 
-    // console.log(JSON.stringify(ast, null, 4));
-    // console.log(JSON.stringify(x(ast), null, 4));
+    const processor = unified()
+        .use(rehypeParse, { fragment: true })
+        .use(rehypeMinify);
 
-    const ht = marked(obj.content, { renderer });
+    const ast = processor.runSync(processor.parse(html));
 
-    const parse = require('rehype-parse');
-    const format = require('rehype-format');
-    const minify = require('rehype-preset-minify');
-
-    const processor2 = unified()
-        .use(parse, { fragment: true })
-        // .use(format)
-        .use(minify);
-
-    const qwe = processor2.runSync(processor2.parse(ht));
-    return { ...obj, content: marked(obj.content, { renderer }), ast: x(ast), ast2: x(qwe) };
+    return { ...obj, ast: cleanAst(ast) };
 };
 
 const convertDate = obj => {
@@ -106,25 +60,17 @@ const clean = obj => {
 };
 
 const recommend = (article, articles) => {
+    const shuffledArticles = sortBy(articles, () => Math.random() > 0.5);
+
     return {
         ...article,
-        recommendations: [
-            {
-                title: 'Incididunt irure minim nisi aute Lorem do est aliqua nostrud laborum',
-                url: '/',
+        recommendations: shuffledArticles
+            .filter((a, idx) => idx < 10)
+            .map(a => ({
+                title: a.title,
+                url: a.canonicalRelative,
                 image: 'https://i.ytimg.com/vi/R2NzN1ew9j0/hqdefault.jpg',
-            },
-            {
-                title: 'Eu consectetur est irure mollit velit consectetur duis amet',
-                url: '/',
-                image: 'https://i.ytimg.com/vi/R2NzN1ew9j0/hqdefault.jpg',
-            },
-            {
-                title: 'Qui exercitation eiusmod anim dolore consectetur ullamco ullamco enim excepteur',
-                url: '/',
-                image: 'https://i.ytimg.com/vi/R2NzN1ew9j0/hqdefault.jpg',
-            },
-        ],
+            })),
     };
 };
 
@@ -140,18 +86,13 @@ module.exports = async () => {
         .map(ensureSlug)
         .map(ensureCanonical);
 
-    articles.sort((a, b) => {
-        if (a.date > b.date) {
-            return -1;
-        }
-        return 1;
-    });
+    const sortedArticles = sortBy(articles, 'date').reverse();
 
     const index = {
-        articles: articles.map(a => pick(a, ['title', 'teaser', 'formattedDate', 'canonicalRelative'])),
+        articles: sortedArticles.map(a => pick(a, ['title', 'teaser', 'formattedDate', 'canonicalRelative'])),
     };
 
-    const articlesWithRecommendations = articles.map(a => recommend(a, articles));
+    const articlesWithRecommendations = sortedArticles.map(a => recommend(a, articles));
     const cleanedArticles = articlesWithRecommendations.map(clean);
 
     await Promise.all(cleanedArticles.map(writeArticleJson));

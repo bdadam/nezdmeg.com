@@ -6,7 +6,7 @@
                 <p>{{ formattedDate }}</p>
                 <share-buttons class="share-buttons" :title="title" :url="canonical"/>
                 <div v-text="teaser" class="article-teaser"></div>
-                <ast-renderer class="article-body" :ast="ast2"/>
+                <ast-renderer class="article-body" :ast="ast"/>
 
                 <meta-tags
                     :title="title"
@@ -17,9 +17,16 @@
             <aside class="sidebar">
                 <ul>
                     <li v-for="recommendation in recommendations" :key="recommendation.title">
-                        <nuxt-link :to="recommendation.url">
-                            <img :src="recommendation.image">
-                            {{ recommendation.title }}
+                        <nuxt-link
+                            :to="recommendation.url"
+                            :title="recommendation.title"
+                            class="article-recommendation"
+                        >
+                            <p
+                                class="article-recommendation__image"
+                                :style="{ backgroundImage: `url(${recommendation.image})`}"
+                            />
+                            <p class="article-recommendation__title">{{ recommendation.title }}</p>
                         </nuxt-link>
                     </li>
                 </ul>
@@ -43,7 +50,6 @@ export default {
             content: '',
             formattedDate: '',
             ast: {},
-            ast2: {},
             recommendations: [],
         };
     },
@@ -109,11 +115,37 @@ export default {
 }
 
 .main-content {
-    flex: 3;
+    flex: 4;
 }
 
 .sidebar {
     flex: 1;
     padding: 24px 40px;
+}
+
+.article-recommendation {
+    display: block;
+    color: #333;
+    text-decoration: none;
+    margin-bottom: 16px;
+    // background-color: #f1f1f1;
+    border-radius: 3px;
+    overflow: hidden;
+
+    &:hover,
+    &:active {
+        text-decoration: underline;
+    }
+}
+
+.article-recommendation__image {
+    padding-top: 56.25%;
+    background-position: center;
+    background-size: cover;
+}
+
+.article-recommendation__title {
+    font-weight: bold;
+    padding: 8px 0;
 }
 </style>
