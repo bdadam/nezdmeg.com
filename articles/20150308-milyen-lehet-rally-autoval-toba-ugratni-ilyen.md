@@ -9,4 +9,10 @@ A peches manőver ellenére igazán nem panaszkodhatnak a szerencsére, ugyanis 
 
 A szerelőcsapat műve azért is csodálatra méltó, mert az autó 10 órát állt a tó fenekén, majd ezek után szinte pillanatok alatt kicserélték benne a benzintankot, a turbófeltöltőt, az elektronikát, a sebességváltót és még ezernyi apró dolgot.
 
+Belső kamerás felvétel:
+
+https://www.youtube.com/watch?v=3dtiwBg1BCg
+
+Kívülről pedig ezt látták a nézők:
+
 https://www.youtube.com/watch?v=SPnjMhXNQ3Y
