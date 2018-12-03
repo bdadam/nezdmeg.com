@@ -1,11 +1,17 @@
-const findPages = () =>
-    Promise.resolve([
-        { route: '/', payload: { qwe: 'asd' } },
-        { route: '/abc', payload: { qwe: 'asd' } },
-        { route: '/def', payload: { qwe: 'asd' } },
-        { route: '/ghi', payload: { qwe: 'asd' } },
-        { route: '/jkl', payload: { qwe: 'asd' } },
-    ]);
+const path = require('path');
+const { promisify } = require('util');
+const glob = promisify(require('glob'));
+
+const findPages = async () => {
+    const articles = await glob('static/data/cikkek/*.json');
+
+    return [
+        // { route: '/' },
+        // { route: '/impresszum.html' },
+
+        ...articles.map(f => ({ route: `/cikkek/${path.basename(f, '.json')}` })),
+    ];
+};
 
 module.exports = {
     modules: ['@nuxtjs/sitemap', '~/modules/content-generator'],
@@ -16,15 +22,15 @@ module.exports = {
             // { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
         ],
     },
-    router: {
-        extendRoutes(routes, resolve) {
-            routes.push({
-                name: 'custom',
-                path: '/:page',
-                component: resolve(__dirname, 'pages/index.vue'),
-            });
-        },
-    },
+    // router: {
+    //     extendRoutes(routes, resolve) {
+    //         routes.push({
+    //             name: 'custom',
+    //             path: '/:page',
+    //             component: resolve(__dirname, 'pages/index.vue'),
+    //         });
+    //     },
+    // },
     generate: {
         async routes() {
             console.log('Generating...');
@@ -32,5 +38,6 @@ module.exports = {
             console.log(routes);
             return routes;
         },
+        subFolders: false,
     },
 };
