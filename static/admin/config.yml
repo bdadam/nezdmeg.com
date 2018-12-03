@@ -7,6 +7,11 @@ backend:
   name: github
   repo: bdadam/nezdmeg.com
 
+slug:
+  encoding: 'ascii'
+  clean_accents: true
+  sanitize_replacement: '-'
+
 collections:
   - name: article
     label: Article
