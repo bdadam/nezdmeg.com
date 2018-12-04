@@ -50,6 +50,13 @@ const ensureCanonical = obj => {
     };
 };
 
+const ensureTags = obj => {
+    return {
+        ...obj,
+        tags: obj.tags || [],
+    };
+};
+
 const writeArticleJson = async obj => {
     await fs.ensureDir('static/data/cikkek');
     return fs.writeFile(`static/data/cikkek/${obj.slug}.json`, JSON.stringify(obj, null, 4));
@@ -132,7 +139,8 @@ module.exports = async () => {
         .map(convertDate)
         .map(convertContentToHtml)
         .map(ensureSlug)
-        .map(ensureCanonical);
+        .map(ensureCanonical)
+        .map(ensureTags);
 
     const articlesWithImages = await Promise.all(articles.map(ensureImages));
 
