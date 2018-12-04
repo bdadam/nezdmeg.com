@@ -14,7 +14,7 @@ const omit = require('lodash/omit');
 const sortBy = require('lodash/sortBy');
 
 const convertContentToHtml = obj => {
-    const html = marked(obj.content);
+    const html = marked(obj.content.trim());
 
     const cleanAst = node => {
         return { ...omit(node, 'position'), children: node.children && node.children.map(cleanAst) };
@@ -74,6 +74,41 @@ const recommend = (article, articles) => {
     };
 };
 
+const analyzeVideo = require('./analyzeVideo');
+
+const ensureImages = async article => {
+    const re = /https:\/\/www\.youtube\.com\/watch\?.*v=([^&]{11})/gi;
+
+    var m;
+    const videos = [];
+    while ((m = re.exec(article.content))) {
+        videos.push(m[0]);
+        // videos.push(m[1]);
+    }
+
+    console.log(videos);
+
+    // 1. use local file if exists
+    // 2. download from live site if exists
+    // 3. download from video hoster
+    // 4. save downloaded file path to `article`
+
+    // const matches = re.exec(article.content);
+    // if (!matches) {
+    //     return article;
+    // }
+
+    // const videoUrl = `https://youtube.com/watch?v=${matches[1]}`;
+
+    // fs.existsSync(`static/article-images/${encodeURIComponent(videoUrl)}-thumbnail.jpg`)
+
+    // const video = await analyzeVideo(videoUrl);
+
+    // console.log(video);
+
+    return { ...article };
+};
+
 module.exports = async () => {
     const articleFiles = await glob('articles/*.md');
     const fileContents = await Promise.all(articleFiles.map(f => fs.readFile(f, 'utf-8')));
@@ -86,7 +121,9 @@ module.exports = async () => {
         .map(ensureSlug)
         .map(ensureCanonical);
 
-    const sortedArticles = sortBy(articles, 'date').reverse();
+    const articlesWithImages = await Promise.all(articles.map(ensureImages));
+
+    const sortedArticles = sortBy(articlesWithImages, 'date').reverse();
 
     const index = {
         articles: sortedArticles.map(a => pick(a, ['title', 'teaser', 'formattedDate', 'canonicalRelative'])),
