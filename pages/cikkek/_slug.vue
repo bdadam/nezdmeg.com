@@ -12,6 +12,7 @@
                     :title="title"
                     :canonical="canonical"
                     :description="description || teaser"
+                    :image="images.video"
                 />
             </article>
             <aside class="sidebar">
@@ -24,7 +25,7 @@
                         >
                             <p
                                 class="article-recommendation__image"
-                                :style="{ backgroundImage: `url(${recommendation.image})`}"
+                                :style="{ backgroundImage: `url(${recommendation.images.video.url})`}"
                             />
                             <p class="article-recommendation__title">{{ recommendation.title }}</p>
                         </nuxt-link>
@@ -51,6 +52,7 @@ export default {
             formattedDate: '',
             ast: {},
             recommendations: [],
+            images: {},
         };
     },
     async asyncData({ route, payload }) {

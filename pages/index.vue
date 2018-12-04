@@ -6,6 +6,7 @@
             <li v-for="article in articles" :key="article.url">
                 <nuxt-link :to="article.canonicalRelative">{{article.title}}</nuxt-link>
                 <p>{{article.formattedDate}}</p>
+                <img :src="article.images.videoThumbnail.url">
                 <div v-text="article.teaser"></div>
                 <div v-html="article.content"></div>
             </li>

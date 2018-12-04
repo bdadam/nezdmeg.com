@@ -69,7 +69,7 @@ const recommend = (article, articles) => {
             .map(a => ({
                 title: a.title,
                 url: a.canonicalRelative,
-                image: 'https://i.ytimg.com/vi/R2NzN1ew9j0/hqdefault.jpg',
+                images: a.images,
             })),
     };
 };
@@ -81,12 +81,18 @@ const ensureImages = async article => {
 
     var m;
     const videos = [];
+    const videoIds = [];
     while ((m = re.exec(article.content))) {
         videos.push(m[0]);
+        videoIds.push(m[1]);
         // videos.push(m[1]);
     }
 
-    console.log(videos);
+    if (videos.length === 0) {
+        return { ...article, images: {} };
+    }
+
+    // console.log(videos);
 
     // 1. use local file if exists
     // 2. download from live site if exists
@@ -106,7 +112,14 @@ const ensureImages = async article => {
 
     // console.log(video);
 
-    return { ...article };
+    const images = {
+        // hero: null,
+        // heroThumbnail: null,
+        videoThumbnail: { url: `https://i.ytimg.com/vi/${videoIds[0]}/hqdefault.jpg`, width: 480, height: 360 },
+        video: { url: `https://i.ytimg.com/vi/${videoIds[0]}/hqdefault.jpg`, width: 480, height: 360 },
+    };
+
+    return { ...article, images };
 };
 
 module.exports = async () => {
@@ -126,10 +139,10 @@ module.exports = async () => {
     const sortedArticles = sortBy(articlesWithImages, 'date').reverse();
 
     const index = {
-        articles: sortedArticles.map(a => pick(a, ['title', 'teaser', 'formattedDate', 'canonicalRelative'])),
+        articles: sortedArticles.map(a => pick(a, ['title', 'teaser', 'formattedDate', 'canonicalRelative', 'images'])),
     };
 
-    const articlesWithRecommendations = sortedArticles.map(a => recommend(a, articles));
+    const articlesWithRecommendations = sortedArticles.map(a => recommend(a, articlesWithImages));
     const cleanedArticles = articlesWithRecommendations.map(clean);
 
     await Promise.all(cleanedArticles.map(writeArticleJson));
