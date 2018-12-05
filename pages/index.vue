@@ -21,7 +21,7 @@
             </ul>
         </div>
         <div class="sidebar">
-            <no-ssr>
+            <!-- <no-ssr>
                 <div class="sidebar-box">
                     <p class="headline-3">Kövess minket a Facebookon is</p>
                     <iframe
@@ -33,7 +33,7 @@
                         allow="encrypted-media"
                     ></iframe>
                 </div>
-            </no-ssr>
+            </no-ssr> -->
         </div>
     </div>
 </template>
