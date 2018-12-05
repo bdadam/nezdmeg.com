@@ -46,7 +46,7 @@ const ensureCanonical = obj => {
     return {
         ...obj,
         // canonical: `https://nezdmeg.com/cikkek/${obj.slug}`,
-        canonicalRelative: `/cikkek/${obj.slug}`,
+        url: `/cikkek/${obj.slug}`,
     };
 };
 
@@ -67,17 +67,16 @@ const clean = obj => {
 };
 
 const recommend = (article, articles) => {
-    const shuffledArticles = sortBy(articles, () => Math.random() > 0.5);
+    const shuffledArticles = sortBy(articles, () => Math.random() > 0.5).slice(0, 6);
 
     return {
         ...article,
-        recommendations: shuffledArticles
-            .filter((a, idx) => idx < 10)
-            .map(a => ({
-                title: a.title,
-                url: a.canonicalRelative,
-                images: a.images,
-            })),
+        recommendations: shuffledArticles.map(a => pick(a, ['title', 'url', 'images'])),
+        // recommendations: shuffledArticles.map(a => ({
+        //     title: a.title,
+        //     url: a.url,
+        //     images: a.images,
+        // })),
     };
 };
 
@@ -147,7 +146,7 @@ module.exports = async () => {
     const sortedArticles = sortBy(articlesWithImages, 'date').reverse();
 
     const index = {
-        articles: sortedArticles.map(a => pick(a, ['title', 'teaser', 'formattedDate', 'canonicalRelative', 'images'])),
+        articles: sortedArticles.map(a => pick(a, ['title', 'teaser', 'formattedDate', 'url', 'images'])),
     };
 
     const articlesWithRecommendations = sortedArticles.map(a => recommend(a, articlesWithImages));

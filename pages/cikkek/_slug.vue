@@ -49,6 +49,7 @@ export default {
         return {
             title: '',
             description: '',
+            url: '',
             teaser: '',
             content: '',
             formattedDate: '',
@@ -73,7 +74,7 @@ export default {
     },
     computed: {
         canonical() {
-            return `https://nezdmeg.com${this.canonicalRelative}`;
+            return `https://nezdmeg.com${this.url}`;
         },
     },
     head() {
