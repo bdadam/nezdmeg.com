@@ -2,7 +2,10 @@
     <div class="site-header">
         <div class="page-container">
             <nuxt-link to="/" class="brand-link">
-                <img src="~/assets/logo.png">
+                <img alt="A NezdMeg.com weboldal logója" src="~/assets/logo.png">
+                <span
+                    style="height: 1px; width: 1px; position: absolute; overflow: hidden; top: -10px;"
+                >Legfrissebb cikkek</span>
             </nuxt-link>
         </div>
     </div>
@@ -12,8 +15,6 @@
     padding: 12px 0 10px;
     border-bottom: 1px solid #cdcdcd;
     background-color: #fff;
-
-    // text-align: center;
 }
 
 .brand-link {
