@@ -1,6 +1,7 @@
 dist
 public
 static/data
+static/video-images
 
 
 # Created by https://www.gitignore.io/api/node

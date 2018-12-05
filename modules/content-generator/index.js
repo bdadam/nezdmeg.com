@@ -12,6 +12,8 @@ const rehypeMinify = require('rehype-preset-minify');
 const pick = require('lodash/pick');
 const omit = require('lodash/omit');
 const sortBy = require('lodash/sortBy');
+const bent = require('bent');
+const sharp = require('sharp');
 
 const convertContentToHtml = obj => {
     const html = marked(obj.content.trim());
@@ -77,6 +79,41 @@ const recommend = (article, articles) => {
 
 const analyzeVideo = require('./analyzeVideo');
 
+const downloadImagesForVideo = async url => {
+    const filename = encodeURIComponent(url).replace('https%3A%2F%2Fwww.youtube.com%2Fwatch%3Fv%3D', '');
+
+    const sqExists = fs.existsSync(`static/video-images/sq/${filename}.jpg`);
+    const hqExists = fs.existsSync(`static/video-images/hq/${filename}.jpg`);
+
+    if (sqExists && hqExists) {
+        return;
+    }
+
+    const videoData = await analyzeVideo(url);
+
+    if (!videoData) {
+        return;
+    }
+
+    const download = bent('buffer');
+
+    const img = await download(videoData.image);
+
+    await fs.ensureDir('static/video-images/sq/');
+    await fs.ensureDir('static/video-images/hq/');
+
+    await sharp(img)
+        .resize(1280, 720)
+        .toFile(`static/video-images/hq/${filename}.jpg`);
+
+    await sharp(img)
+        .resize(480, 270)
+        .toFile(`static/video-images/sq/${filename}.jpg`);
+};
+
+const Queue = require('a-promise-queue');
+const queue = new Queue({ concurrency: 1 });
+
 const ensureImages = async article => {
     const re = /https:\/\/www\.youtube\.com\/watch\?.*v=([^&]{11})/gi;
 
@@ -92,6 +129,15 @@ const ensureImages = async article => {
     if (videos.length === 0) {
         return { ...article, images: {} };
     }
+
+    await Promise.all(
+        videos.map(url => {
+            // console.log(url);
+            // const x = await analyzeVideo(url);
+            // console.log(url, x);
+            return queue.add(() => downloadImagesForVideo(url));
+        })
+    );
 
     // console.log(videos);
 
@@ -114,10 +160,25 @@ const ensureImages = async article => {
     // console.log(video);
 
     const images = {
-        // hero: null,
-        // heroThumbnail: null,
-        videoThumbnail: { url: `https://i.ytimg.com/vi/${videoIds[0]}/hqdefault.jpg`, width: 480, height: 360 },
-        video: { url: `https://i.ytimg.com/vi/${videoIds[0]}/hqdefault.jpg`, width: 480, height: 360 },
+        // videoThumbnail: { url: `https://i.ytimg.com/vi/${videoIds[0]}/hqdefault.jpg`, width: 480, height: 360 },
+        // video: { url: `https://i.ytimg.com/vi/${videoIds[0]}/hqdefault.jpg`, width: 480, height: 360 },
+
+        videoThumbnail: {
+            url: `/video-images/sq/${encodeURIComponent(videos[0]).replace(
+                'https%3A%2F%2Fwww.youtube.com%2Fwatch%3Fv%3D',
+                ''
+            )}.jpg`,
+            width: 480,
+            height: 270,
+        },
+        video: {
+            url: `/video-images/hq/${encodeURIComponent(videos[0]).replace(
+                'https%3A%2F%2Fwww.youtube.com%2Fwatch%3Fv%3D',
+                ''
+            )}.jpg`,
+            width: 1280,
+            height: 720,
+        },
     };
 
     return { ...article, images };

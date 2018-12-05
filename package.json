@@ -16,6 +16,8 @@
     "homepage": "https://github.com/bdadam/nezdmeg.com#readme",
     "dependencies": {
         "@nuxtjs/sitemap": "^0.1.1",
+        "a-promise-queue": "^2.0.0",
+        "bent": "^1.1.0",
         "consola": "^2.3.0",
         "eslint": "^5.4.0",
         "eslint-config-prettier": "^3.3.0",
@@ -43,6 +45,7 @@
         "remark-parse": "^6.0.3",
         "remark-parse-yaml": "^0.0.1",
         "sass-loader": "^7.1.0",
+        "sharp": "^0.21.0",
         "speakingurl": "^14.0.1",
         "unified": "^7.0.2",
         "vfile": "^3.0.1"
