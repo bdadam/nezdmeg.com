@@ -1,5 +1,5 @@
 ---
-title: Két percig az életéért küzdve lógott a levegőben a sárkányrepülő utasa
+title: Két percig lógott a levegőben az életéért küzdve a sárkányrepülő utasa
 date: '2018-12-03 23:11'
 teaser: >-
     Majdnem végzetes fordulatot vett egy turista számára a svájci vakáció első
