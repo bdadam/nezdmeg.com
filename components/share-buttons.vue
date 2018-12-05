@@ -48,6 +48,7 @@ a {
     margin: 0 6px;
     font-weight: bold;
     white-space: nowrap;
+    flex: 0 0 auto;
 
     &:hover {
         // filter: brightness(80%);
