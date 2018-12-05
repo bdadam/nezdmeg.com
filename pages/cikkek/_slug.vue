@@ -6,7 +6,7 @@
             <share-buttons class="share-buttons" :title="title" :url="canonical"/>
             <div v-text="teaser" class="article-teaser"></div>
             <ast-renderer class="article-body" :ast="ast"/>
-            <p v-if="tags && tags.length > 0">Cimkék: {{tags.join(', ')}}</p>
+            <!-- <p v-if="tags && tags.length > 0">Cimkék: {{tags.join(', ')}}</p> -->
         </article>
         <aside class="sidebar">
             <ul>
