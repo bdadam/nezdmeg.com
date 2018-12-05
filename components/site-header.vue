@@ -12,6 +12,8 @@
     padding: 12px 0 10px;
     border-bottom: 1px solid #cdcdcd;
     background-color: #fff;
+
+    // text-align: center;
 }
 
 .brand-link {
