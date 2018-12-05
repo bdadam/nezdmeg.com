@@ -1,40 +1,38 @@
 <template>
     <div class="page-container">
-        <div class="article-container">
-            <article class="main-content">
-                <h1 class="article-title">{{ title }}</h1>
-                <p>{{ formattedDate }}</p>
-                <share-buttons class="share-buttons" :title="title" :url="canonical"/>
-                <div v-text="teaser" class="article-teaser"></div>
-                <ast-renderer class="article-body" :ast="ast"/>
+        <article class="main-content">
+            <h1 class="article-title">{{ title }}</h1>
+            <p>{{ formattedDate }}</p>
+            <share-buttons class="share-buttons" :title="title" :url="canonical"/>
+            <div v-text="teaser" class="article-teaser"></div>
+            <ast-renderer class="article-body" :ast="ast"/>
 
-                <p v-if="tags && tags.length > 0">Cimkék: {{tags.join(', ')}}</p>
+            <p v-if="tags && tags.length > 0">Cimkék: {{tags.join(', ')}}</p>
 
-                <meta-tags
-                    :title="title"
-                    :canonical="canonical"
-                    :description="description || teaser"
-                    :image="images.video"
-                />
-            </article>
-            <aside class="sidebar">
-                <ul>
-                    <li v-for="recommendation in recommendations" :key="recommendation.title">
-                        <nuxt-link
-                            :to="recommendation.url"
-                            :title="recommendation.title"
-                            class="article-recommendation"
-                        >
-                            <p
-                                class="article-recommendation__image"
-                                :style="{ backgroundImage: `url(${recommendation.images.video.url})`}"
-                            />
-                            <p class="article-recommendation__title">{{ recommendation.title }}</p>
-                        </nuxt-link>
-                    </li>
-                </ul>
-            </aside>
-        </div>
+            <meta-tags
+                :title="title"
+                :canonical="canonical"
+                :description="description || teaser"
+                :image="images.video"
+            />
+        </article>
+        <aside class="sidebar">
+            <ul>
+                <li v-for="recommendation in recommendations" :key="recommendation.title">
+                    <nuxt-link
+                        :to="recommendation.url"
+                        :title="recommendation.title"
+                        class="article-recommendation"
+                    >
+                        <p
+                            class="article-recommendation__image"
+                            :style="{ backgroundImage: `url(${recommendation.images.video.url})`}"
+                        />
+                        <p class="article-recommendation__title">{{ recommendation.title }}</p>
+                    </nuxt-link>
+                </li>
+            </ul>
+        </aside>
     </div>
 </template>
 <script>
@@ -91,12 +89,15 @@ export default {
     },
 };
 </script>
+
 <style lang="scss">
 .article-title {
     font-size: 1.5rem;
     font-weight: bold;
     line-height: 1.25;
-    margin: 24px 0 12px;
+    // margin: 24px 0 12px;
+    // margin: 0 0 12px;
+    margin-bottom: 16px;
 }
 
 .article-teaser {
@@ -119,20 +120,6 @@ export default {
     .video-player {
         margin-bottom: 12px;
     }
-}
-
-.article-container {
-    display: flex;
-    flex-direction: row;
-}
-
-.main-content {
-    flex: 4;
-}
-
-.sidebar {
-    flex: 1;
-    padding: 24px 40px;
 }
 
 .article-recommendation {

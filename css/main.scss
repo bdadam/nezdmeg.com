@@ -13,20 +13,55 @@ body {
     //     Segoe UI Emoji, Segoe UI Symbol;
     color: #333;
     line-height: 1.36;
+
+    background-color: #eff0f1;
 }
 
 .page-container {
     max-width: 1200px;
     margin: 0 auto;
-    padding: 0 20px;
+    // padding: 0 20px;
+    display: flex;
+    flex-direction: row;
+    background-color: #fff;
 }
 
-@media (min-width: 1240px) {
-    .page-container {
-        padding: 0;
-    }
+.main-content {
+    // background-color: #fff;
+    flex: 3;
+    padding: 20px;
 }
+
+.sidebar {
+    flex: 1;
+    // padding: 24px 40px;
+    padding: 20px;
+    background-color: #eff0f1;
+    background-color: rgb(230, 231, 232);
+}
+
+// @media (min-width: 1240px) {
+//     .page-container {
+//         padding: 0;
+//     }
+// }
 
 table {
     width: 100%;
+}
+
+.headline-1 {
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+.headline-2 {
+    font-size: 1.25rem;
+    font-weight: bold;
+}
+
+.headline-3 {
+    font-size: 1.125rem;
+    font-weight: bold;
+    margin-bottom: 8px;
 }
