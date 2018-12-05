@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="buttons">
         Megosztás
         <a
             class="fb"
@@ -33,6 +33,13 @@
     </div>
 </template>
 <style lang="scss" scoped>
+.buttons {
+    display: flex;
+    flex-direction: row;
+    overflow-x: auto;
+    align-items: center;
+    flex-wrap: nowrap;
+}
 a {
     color: #fff;
     padding: 8px 16px;
@@ -40,6 +47,7 @@ a {
     text-decoration: none;
     margin: 0 6px;
     font-weight: bold;
+    white-space: nowrap;
 
     &:hover {
         // filter: brightness(80%);
