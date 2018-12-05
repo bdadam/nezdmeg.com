@@ -72,11 +72,6 @@ const recommend = (article, articles) => {
     return {
         ...article,
         recommendations: shuffledArticles.map(a => pick(a, ['title', 'url', 'images'])),
-        // recommendations: shuffledArticles.map(a => ({
-        //     title: a.title,
-        //     url: a.url,
-        //     images: a.images,
-        // })),
     };
 };
 
