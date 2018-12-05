@@ -13,7 +13,7 @@ export default ({ title, description, canonical, image }) => {
         link: [{ rel: 'canonical', href: canonical }],
         meta: [
             { property: 'og:title', content: title },
-            { property: 'og:description', content: description },
+            { property: 'og:description', name: 'description', content: description },
             { property: 'og:url', content: canonical },
             { property: 'og:site_name', content: 'Nézd meg!' },
             { property: 'og:locale', content: 'hu_HU' },
