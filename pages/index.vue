@@ -14,6 +14,8 @@
     </div>
 </template>
 <script>
+import generateMetaTags from '~/services/generateMetaTags';
+
 export default {
     layout: 'page',
     data() {
@@ -33,10 +35,17 @@ export default {
         }
     },
     head() {
-        return {
-            title: this.title,
-            meta: [{ property: 'og:site_name', content: 'Nézd meg!' }, { property: 'og:locale', content: 'hu_HU' }],
-        };
+        return generateMetaTags({
+            title: 'Nézd meg és mutasd meg másoknak is!',
+            description:
+                'Érdekes, látványos, megható és lélegzetelálltó történeteket gyűjtünk össze. Olvasd el és oszd meg őket!',
+            canonical: 'https://nezdmeg.com/',
+            image: {
+                url: require('~/assets/logo.png'),
+                width: 157,
+                height: 60,
+    },
+        });
     },
 };
 </script>

@@ -38,8 +38,8 @@
     </div>
 </template>
 <script>
-import TwitterCard from '~/components/twitter-card';
-import MetaTags from '~/components/meta-tags';
+import generateMetaTags from '~/services/generateMetaTags';
+
 import AstRenderer from '~/components/ast-renderer';
 import ShareButtons from '~/components/share-buttons';
 
@@ -76,9 +76,15 @@ export default {
             return `https://nezdmeg.com${this.canonicalRelative}`;
         },
     },
+    head() {
+        return generateMetaTags({
+            title: this.title,
+            description: this.description || this.teaser,
+            canonical: this.canonical,
+            image: this.images.video,
+        });
+    },
     components: {
-        TwitterCard,
-        MetaTags,
         AstRenderer,
         ShareButtons,
     },
