@@ -2,18 +2,18 @@
     <div class="page-container">
         <div class="main-content">
             <h1 class="page-title">Legfrissebb cikkek, amelyeket érdemes megnézni</h1>
-            <ul class="article-cards">
-                <li v-for="article in articles" :key="article.url" class="article-card">
-                    <nuxt-link :to="article.url" :title="article.title">
-                        <div class="image-container">
+            <ul class="article-list">
+                <li v-for="article in articles" :key="article.url" class="article-list__item">
+                    <nuxt-link :to="article.url" :title="article.title" class="article-list__link">
+                        <div class="article-list__image-container">
                             <div
-                                class="image"
+                                class="article-list__image"
                                 :style="{backgroundImage: `url(${article.images.videoThumbnail.url})`}"
                             ></div>
                         </div>
-                        <div class="text-container">
+                        <div class="article-list__details">
                             <p class="title">{{article.title}}</p>
-                            <div class="teaser" v-text="article.teaser"></div>
+                            <p class="teaser" v-text="article.teaser"></p>
                             <!-- <p>{{article.formattedDate}}</p> -->
                         </div>
                     </nuxt-link>
@@ -89,22 +89,7 @@ export default {
     margin-bottom: 20px;
 }
 
-.article-cards {
-    // display: flex;
-    // flex-direction: row;
-    // flex-wrap: wrap;
-    // margin: 0 -10px;
-
-    // display: grid;
-    // grid-template-columns: 1fr 1fr 1fr;
-    // grid-column-gap: 32px;
-    // grid-row-gap: 32px;
-
-    // width: 80%;
-    // margin: 0 auto;
-}
-
-.article-card {
+.article-list__item {
     // border-radius: 3px;
     // box-shadow: 0px 1px 4px rgba(127, 127, 127, 0.5);
 
@@ -124,61 +109,72 @@ export default {
     //     }
     // }
 
-    border-bottom: 1px solid #ddd;
+    border-bottom: 1px solid #ccc;
     margin-bottom: 20px;
-    // padding: 0 15%;
+}
+.article-list__link {
+    color: #333;
+    text-decoration: none;
 
-    a {
-        color: #333;
-        text-decoration: none;
+    margin-bottom: 20px;
 
-        display: flex;
-        flex-direction: row;
-        margin-bottom: 20px;
-        // &:hover {
-        //     text-decoration: underline;
-        // }
-
-        &:hover,
-        &:active {
-            .title {
-                text-decoration: underline;
-            }
+    &:hover,
+    &:active {
+        .title {
+            text-decoration: underline;
         }
     }
 
-    .image-container {
-        // padding-top: 56.25%;
-        position: relative;
-        overflow: hidden;
-
-        flex: 1;
+    @media (min-width: 1024px) {
+        display: flex;
+        flex-direction: row;
     }
+}
 
-    .text-container {
-        flex: 3;
-        padding-left: 20px;
-    }
+.article-list__image {
+    background-size: cover;
+    background-position: center;
+    padding-top: 40%;
 
-    .image {
-        // position: absolute;
-        // top: 0;
-        // left: 0;
-        // right: 0;
-        // bottom: 0;
-        background-size: cover;
-        background-position: center;
+    @media (min-width: 1024px) {
         padding-top: 56.25%;
     }
+}
+
+.article-list__details {
+    margin-top: 12px;
+    padding-bottom: 16px;
 
     .title {
         font-weight: 600;
-        // padding: 12px 16px;
         letter-spacing: 0.015em;
         font-size: 1.125rem;
-        // font-size: 0.875rem;
-        line-height: 1.3;
-        margin-bottom: 12px;
+        line-height: 1.2;
+        margin-bottom: 4px;
+    }
+}
+
+@media (min-width: 768px) {
+    .article-list__link {
+        display: flex;
+        flex-direction: row;
+    }
+
+    .article-list__image-container {
+        // flex: 1 1 auto;
+        // padding: 0;
+        // height: 56.25%;
+        flex: 1;
+    }
+
+    .article-list__image {
+        padding-top: 56.25%;
+    }
+
+    .article-list__details {
+        flex: 3;
+        margin-top: 0;
+        margin-left: 24px;
     }
 }
 </style>
