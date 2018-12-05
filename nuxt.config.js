@@ -12,6 +12,9 @@ module.exports = {
     modules: ['@nuxtjs/sitemap', '~/modules/content-generator'],
     css: ['~/css/main.scss'],
     head: {
+        htmlAttrs: {
+            lang: 'hu-HU',
+        },
         meta: [{ charset: 'utf-8' }, { name: 'viewport', content: 'width=device-width, initial-scale=1' }],
         link: [
             {
