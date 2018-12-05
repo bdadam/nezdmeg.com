@@ -5,12 +5,7 @@ const glob = promisify(require('glob'));
 const findPages = async () => {
     const articles = await glob('static/data/cikkek/*.json');
 
-    return [
-        // { route: '/' },
-        // { route: '/impresszum.html' },
-
-        ...articles.map(f => ({ route: `/cikkek/${path.basename(f, '.json')}` })),
-    ];
+    return [...articles.map(f => ({ route: `/cikkek/${path.basename(f, '.json')}` }))];
 };
 
 module.exports = {
@@ -37,9 +32,7 @@ module.exports = {
     // },
     generate: {
         async routes() {
-            console.log('Generating...');
             const routes = await findPages();
-            console.log(routes);
             return routes;
         },
         subFolders: false,
