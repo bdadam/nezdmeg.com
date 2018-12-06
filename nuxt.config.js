@@ -14,9 +14,16 @@ module.exports = {
         [
             '@nuxtjs/pwa',
             {
+                meta: {
+                    theme_color: '#a00',
+                    // lang: 'hu-HU',
+                },
                 manifest: {
                     name: 'Nézd meg!',
                     lang: 'hu',
+                },
+                icon: {
+                    iconSrc: 'static/logo_big.png',
                 },
             },
         ],
