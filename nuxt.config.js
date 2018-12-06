@@ -9,7 +9,19 @@ const findPages = async () => {
 };
 
 module.exports = {
-    modules: ['@nuxtjs/sitemap', '~/modules/content-generator'],
+    modules: [
+        '@nuxtjs/sitemap',
+        [
+            '@nuxtjs/pwa',
+            {
+                manifest: {
+                    name: 'Nézd meg!',
+                    lang: 'hu',
+                },
+            },
+        ],
+        '~/modules/content-generator',
+    ],
     css: ['~/css/main.scss'],
     head: {
         htmlAttrs: {
@@ -17,10 +29,10 @@ module.exports = {
         },
         meta: [{ charset: 'utf-8' }, { name: 'viewport', content: 'width=device-width, initial-scale=1' }],
         link: [
-            {
-                rel: 'stylesheet',
-                href: 'https://fonts.googleapis.com/css?family=Open+Sans:400,600&amp;subset=latin-ext',
-            },
+            // {
+            //     rel: 'stylesheet',
+            //     href: 'https://fonts.googleapis.com/css?family=Open+Sans:400,600&amp;subset=latin-ext',
+            // },
             // { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
         ],
     },
