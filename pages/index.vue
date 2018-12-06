@@ -1,7 +1,7 @@
 <template>
     <div class="page-container">
         <div class="main-content">
-            <h1 class="page-title">Legfrissebb cikkek, amelyeket érdemes megnézni</h1>
+            <h1 class="page-title">Cikkek és videok, amelyeket érdemes megnézni</h1>
             <ul class="article-list">
                 <li v-for="article in articles" :key="article.url" class="article-list__item">
                     <nuxt-link :to="article.url" :title="article.title" class="article-list__link">
@@ -33,7 +33,7 @@
                         allow="encrypted-media"
                     ></iframe>
                 </div>
-            </no-ssr> -->
+            </no-ssr>-->
         </div>
     </div>
 </template>
@@ -84,39 +84,26 @@ export default {
 
 <style lang="scss" scoped>
 .page-title {
-    font-size: 1.125rem;
+    font-size: 1.25rem;
     font-weight: bold;
     margin-bottom: 20px;
+    background-color: #f1f1f1;
+    margin: -20px -20px 20px -20px;
+    padding: 20px;
 }
 
 .article-list__item {
-    // border-radius: 3px;
-    // box-shadow: 0px 1px 4px rgba(127, 127, 127, 0.5);
+    border-bottom: 1px dotted #ccc;
+    padding: 32px 0;
 
-    // box-shadow: 0px 1px 3px 0px rgba(0, 0, 0, 0.2), 0px 1px 1px 0px rgba(0, 0, 0, 0.14),
-    //     0px 2px 1px -1px rgba(0, 0, 0, 0.12);
-    // background-color: #fff;
-    // background-color: #eff0f1;
-
-    // overflow: hidden;
-
-    // &:hover {
-    //     // box-shadow: 0px 1px 4px rgba(127, 127, 127, 0.75);
-
-    //     .image {
-    //         transition-duration: 0.3s;
-    //         transform: scale(1.05);
-    //     }
-    // }
-
-    border-bottom: 1px solid #ccc;
-    margin-bottom: 20px;
+    &:first-child {
+        padding-top: 0;
+    }
 }
+
 .article-list__link {
     color: #333;
     text-decoration: none;
-
-    margin-bottom: 20px;
 
     &:hover,
     &:active {
@@ -142,15 +129,14 @@ export default {
 }
 
 .article-list__details {
-    margin-top: 12px;
-    padding-bottom: 16px;
+    margin-top: 24px;
 
     .title {
         font-weight: 600;
         letter-spacing: 0.015em;
         font-size: 1.125rem;
         line-height: 1.2;
-        margin-bottom: 4px;
+        margin-bottom: 8px;
     }
 }
 
@@ -161,10 +147,8 @@ export default {
     }
 
     .article-list__image-container {
-        // flex: 1 1 auto;
-        // padding: 0;
-        // height: 56.25%;
         flex: 1;
+        margin-bottom: 0;
     }
 
     .article-list__image {
