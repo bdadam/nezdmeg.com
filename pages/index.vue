@@ -73,9 +73,9 @@ export default {
                 'Érdekes, látványos, megható és lélegzetelálltó történeteket gyűjtünk össze. Olvasd el és oszd meg őket!',
             canonical: 'https://nezdmeg.com/',
             image: {
-                url: require('~/assets/logo.png'),
-                width: 157,
-                height: 60,
+                url: require('~/static/logo_big.png'),
+                width: 1045,
+                height: 1045,
             },
         });
     },
