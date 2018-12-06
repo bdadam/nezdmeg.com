@@ -69,7 +69,7 @@
         "no-useless-constructor": "warn",
         "no-useless-return": "warn",
         "object-shorthand": "warn",
-        "prefer-destructuring": "warn",
+        "prefer-destructuring": "off",
         "prefer-template": "warn",
         "symbol-description": "warn",
 
