@@ -6,6 +6,7 @@
             rel="external noreferrer"
             :href="`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(url)}`"
             target="_blank"
+            @click="track('facebook')"
         >Facebook</a>
         <!-- <a
             class="tw"
@@ -19,19 +20,35 @@
             :href="`https://twitter.com/intent/tweet?url=${encodeURIComponent(url)}&text=${encodeURIComponent('Nézd meg!')}`"
             rel="external noreferrer"
             target="_blank"
+            @click="track('twitter')"
         >Twitter</a>
         <a
             class="em"
             :href="`mailto:?&amp;subject=${encodeURIComponent(`Nézd meg! ${title}`)}&amp;body=${encodeURIComponent(`${title}\n\n${url}`)}`"
+            @click="track('email')"
         >E-mail</a>
         <a
             class="wa"
             :href="`https://wa.me/?text=${encodeURIComponent(`Nézd meg! ${title} ${url}`)}`"
             rel="external noreferrer"
             target="_blank"
+            @click="track('watsapp')"
         >WhatsApp</a>
     </div>
 </template>
+
+<script>
+import { event } from '~/services/tracking';
+export default {
+    props: ['url', 'title'],
+    methods: {
+        track(network) {
+            event('Social', 'Share', network);
+        },
+    },
+};
+</script>
+
 <style lang="scss" scoped>
 .buttons {
     display: flex;
@@ -74,8 +91,3 @@ a {
     background-color: #128c7e;
 }
 </style>
-<script>
-export default {
-    props: ['url', 'title'],
-};
-</script>
