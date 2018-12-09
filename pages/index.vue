@@ -139,7 +139,7 @@ export default {
     .title {
         font-weight: 600;
         letter-spacing: 0.015em;
-        font-size: 1.125rem;
+        font-size: 1.25rem;
         line-height: 1.2;
         margin-bottom: 8px;
     }
