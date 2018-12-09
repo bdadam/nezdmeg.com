@@ -29,6 +29,7 @@
 </template>
 <script>
 import generateMetaTags from '~/services/generateMetaTags';
+import { pageview } from '~/services/tracking';
 
 import AstRenderer from '~/components/ast-renderer';
 import ShareButtons from '~/components/share-buttons';
@@ -66,6 +67,9 @@ export default {
         canonical() {
             return `https://nezdmeg.com${this.url}`;
         },
+    },
+    mounted() {
+        pageview();
     },
     head() {
         return generateMetaTags({

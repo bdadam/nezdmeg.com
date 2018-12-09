@@ -39,6 +39,7 @@
 </template>
 <script>
 import generateMetaTags from '~/services/generateMetaTags';
+import { pageview } from '~/services/tracking';
 
 export default {
     layout: 'page',
@@ -66,6 +67,10 @@ export default {
             return fetch(`/data/index.json`).then(x => x.json());
         }
     },
+    mounted() {
+        pageview();
+    },
+
     head() {
         return generateMetaTags({
             title: 'Nézd meg és mutasd meg másoknak is!',
