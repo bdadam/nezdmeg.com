@@ -6,7 +6,15 @@
             <share-buttons class="share-buttons" :title="title" :url="canonical"/>
             <div v-text="teaser" class="article-teaser"></div>
             <ast-renderer class="article-body" :ast="ast"/>
-            <!-- <p v-if="tags && tags.length > 0">Cimkék: {{tags.join(', ')}}</p> -->
+            <p v-if="tags && tags.length > 0">
+                <svg class="icon-tags">
+                    <path
+                        d="M7 7c0-1.109-0.891-2-2-2s-2 0.891-2 2 0.891 2 2 2 2-0.891 2-2zM23.672 16c0 0.531-0.219 1.047-0.578 1.406l-7.672 7.688c-0.375 0.359-0.891 0.578-1.422 0.578s-1.047-0.219-1.406-0.578l-11.172-11.188c-0.797-0.781-1.422-2.297-1.422-3.406v-6.5c0-1.094 0.906-2 2-2h6.5c1.109 0 2.625 0.625 3.422 1.422l11.172 11.156c0.359 0.375 0.578 0.891 0.578 1.422zM29.672 16c0 0.531-0.219 1.047-0.578 1.406l-7.672 7.688c-0.375 0.359-0.891 0.578-1.422 0.578-0.812 0-1.219-0.375-1.75-0.922l7.344-7.344c0.359-0.359 0.578-0.875 0.578-1.406s-0.219-1.047-0.578-1.422l-11.172-11.156c-0.797-0.797-2.312-1.422-3.422-1.422h3.5c1.109 0 2.625 0.625 3.422 1.422l11.172 11.156c0.359 0.375 0.578 0.891 0.578 1.422z"
+                    ></path>
+                </svg>
+                Cimkék: {{tags.join(', ')}}
+            </p>
+            <share-buttons class="share-buttons" :title="title" :url="canonical"/>
         </article>
         <aside class="sidebar">
             <ul>
@@ -97,7 +105,6 @@ export default {
 }
 
 .article-teaser {
-    font-size: 1.125rem;
     margin: 12px 0;
 }
 
@@ -110,8 +117,6 @@ export default {
 }
 
 .article-body {
-    font-size: 1.125rem;
-
     p,
     .video-player {
         margin-bottom: 12px;
@@ -142,5 +147,13 @@ export default {
 .article-recommendation__title {
     font-weight: bold;
     padding: 8px 0;
+}
+
+.icon-tags {
+    width: 30px;
+    height: 28px;
+    fill: #333;
+    display: inline-block;
+    vertical-align: middle;
 }
 </style>
