@@ -1,15 +1,21 @@
 <template>
     <div class="video-player">
-        <iframe :src="src" title="Beágyazott video"></iframe>
+        <!-- <img :src="image" v-if="!showIframe"> -->
+        <no-ssr>
+            <iframe
+                :src="src"
+                title="Beágyazott video"
+                data-load="showIframe = true"
+                data-v-show="showIframe"
+            ></iframe>
+        </no-ssr>
     </div>
 </template>
 <script>
 export default {
-    props: ['video'],
-    computed: {
-        src() {
-            return this.video.replace('watch?v=', 'embed/');
-        },
+    props: ['video', 'src', 'image'],
+    data() {
+        return { showIframe: false };
     },
 };
 </script>
@@ -20,7 +26,8 @@ export default {
     padding-top: 56.25%;
     background-color: #000;
 
-    iframe {
+    iframe,
+    img {
         display: block;
         width: 100%;
         height: 100%;

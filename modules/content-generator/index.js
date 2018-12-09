@@ -18,6 +18,39 @@ const sharp = require('sharp');
 const convertContentToHtml = obj => {
     const html = marked(obj.content.trim());
 
+    const isEmbeddableVideo = node => {
+        try {
+            return (
+                node.tagName === 'p' &&
+                node.children[0].tagName === 'a' &&
+                node.children[0].children[0].value === node.children[0].properties.href
+            );
+        } catch (ex) {
+            return false;
+        }
+    };
+
+    const embedVideos = node => {
+        if (isEmbeddableVideo(node)) {
+            const href = node.children[0].properties.href;
+            return {
+                type: node.type,
+                tagName: 'video-embed',
+                properties: {
+                    video: href,
+                    src: href.replace('watch?v=', 'embed/'),
+                    image: `/video-images/hq/${encodeURIComponent(href).replace(
+                        'https%3A%2F%2Fwww.youtube.com%2Fwatch%3Fv%3D',
+                        ''
+                    )}.jpg`,
+                },
+                children: [],
+            };
+        }
+
+        return { ...node, children: node.children ? node.children.map(embedVideos) : [] };
+    };
+
     const cleanAst = node => {
         return { ...omit(node, 'position'), children: node.children && node.children.map(cleanAst) };
     };
@@ -28,7 +61,7 @@ const convertContentToHtml = obj => {
 
     const ast = processor.runSync(processor.parse(html));
 
-    return { ...obj, ast: cleanAst(ast) };
+    return { ...obj, ast: embedVideos(cleanAst(ast)) };
 };
 
 const convertDate = obj => {
