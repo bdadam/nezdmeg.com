@@ -10,7 +10,6 @@ const findPages = async () => {
 
 module.exports = {
     modules: [
-        '@nuxtjs/sitemap',
         [
             '@nuxtjs/pwa',
             {
@@ -28,6 +27,7 @@ module.exports = {
             },
         ],
         '~/modules/content-generator',
+        '@nuxtjs/sitemap',
     ],
     css: ['~/css/main.scss'],
     head: {
@@ -63,5 +63,14 @@ module.exports = {
     server: {
         port: 3000,
         host: '0.0.0.0',
+    },
+    sitemap: {
+        path: '/sitemap.xml',
+        hostname: 'https://nezdmeg.com',
+        generate: true,
+        async routes() {
+            const routes = await findPages();
+            return routes.map(r => r.route);
+        },
     },
 };

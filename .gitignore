@@ -2,6 +2,7 @@ dist
 public
 static/data
 static/video-images
+static/sitemap.xml
 
 sw.*
 
