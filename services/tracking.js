@@ -52,3 +52,33 @@ export const pageview = () => {
         mode: 'no-cors',
     });
 };
+
+export const event = (category, action, label) => {
+    const params = {
+        v: 1,
+        t: 'event',
+        tid: 'UA-49233936-4',
+        aip: 1,
+        ds: 'web',
+        cid: readAndCreateCid(),
+        dr: document.referrer,
+        sr: `${window.screen.availWidth}x${window.screen.availHeight}`,
+        vp: `${document.documentElement.clientWidth}x${document.documentElement.clientHeight}`,
+        sd: `${screen.colorDepth}-bit`,
+        de: 'UTF-8',
+        dl: document.location.origin + document.location.pathname + document.location.search,
+        dt: document.title,
+        ul: navigator.language || navigator.userLanguage,
+        z: (Math.random() * 1e9) | 0,
+
+        ec: category,
+        ea: action,
+        el: label,
+    };
+
+    fetch(`https://www.google-analytics.com/r/collect?${convertToQs(params)}`, {
+        credentials: 'omit',
+        method: 'GET',
+        mode: 'no-cors',
+    });
+};
