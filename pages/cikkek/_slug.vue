@@ -33,6 +33,8 @@
                 </li>
             </ul>
         </aside>
+
+        <script type="application/ld+json" v-html="JSON.stringify(jsonld)"></script>
     </div>
 </template>
 <script>
@@ -74,6 +76,33 @@ export default {
     computed: {
         canonical() {
             return `https://nezdmeg.com${this.url}`;
+        },
+        jsonld() {
+            return {
+                '@context': 'http://schema.org',
+                '@type': 'NewsArticle',
+                mainEntityOfPage: {
+                    '@type': 'WebPage',
+                    '@id': this.canonical,
+                },
+                headline: this.title,
+                image: [`https://nezdmeg.com/${this.images.video.url}`],
+                // datePublished: '2015-02-05T08:00:00+08:00',
+                // dateModified: '2015-02-05T09:20:00+08:00',
+                // author: {
+                //     '@type': 'Person',
+                //     name: 'John Doe',
+                // },
+                // publisher: {
+                //     '@type': 'Organization',
+                //     name: 'Google',
+                //     logo: {
+                //         '@type': 'ImageObject',
+                //         url: 'https://google.com/logo.jpg',
+                //     },
+                // },
+                description: this.description || this.teaser,
+            };
         },
     },
     mounted() {
