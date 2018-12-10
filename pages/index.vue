@@ -12,7 +12,7 @@
                             ></div>
                         </div>
                         <div class="article-list__details">
-                            <p class="title">{{article.title}}</p>
+                            <h2 class="title">{{article.title}}</h2>
                             <p class="teaser" v-text="article.teaser"></p>
                             <!-- <p>{{article.formattedDate}}</p> -->
                         </div>
