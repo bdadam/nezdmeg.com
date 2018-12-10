@@ -51,6 +51,7 @@ export default {
         return {
             title: '',
             description: '',
+            date: '',
             url: '',
             teaser: '',
             content: '',
@@ -88,20 +89,24 @@ export default {
                 },
                 headline: this.title,
                 image: [`https://nezdmeg.com/${this.images.video.url}`],
-                // datePublished: '2015-02-05T08:00:00+08:00',
+                datePublished: this.date, //'2015-02-05T08:00:00+08:00',
                 // dateModified: '2015-02-05T09:20:00+08:00',
-                // author: {
-                //     '@type': 'Person',
-                //     name: 'John Doe',
-                // },
-                // publisher: {
-                //     '@type': 'Organization',
-                //     name: 'Google',
-                //     logo: {
-                //         '@type': 'ImageObject',
-                //         url: 'https://google.com/logo.jpg',
-                //     },
-                // },
+                author: {
+                    '@type': 'Organization',
+                    name: 'Nézd meg! nezdmeg.com',
+                    logo: {
+                        '@type': 'ImageObject',
+                        url: require('~/static/logo_big.png'),
+                    },
+                },
+                publisher: {
+                    '@type': 'Organization',
+                    name: 'Nézd meg! nezdmeg.com',
+                    logo: {
+                        '@type': 'ImageObject',
+                        url: `https://nezdmeg.com${require('~/static/logo_big.png')}`,
+                    },
+                },
                 description: this.description || this.teaser,
             };
         },
