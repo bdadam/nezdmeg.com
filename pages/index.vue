@@ -19,7 +19,6 @@
                     </nuxt-link>
                 </li>
             </ul>
-            <p style="display: none;">2=2</p>
         </div>
         <div class="sidebar">
             <!-- <no-ssr>
