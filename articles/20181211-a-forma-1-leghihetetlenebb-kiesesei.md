@@ -1,5 +1,5 @@
 ---
-title: A Forma 1 leghihetetlenebb kiesései
+title: A Forma-1 leghihetetlenebb kiesései
 date: '2018-12-11 01:28'
 teaser: >-
   Összeütközés egy szarvassal? Szaltó a célegyenesben? Elkaszálni az orvosi autó
