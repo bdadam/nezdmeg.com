@@ -3,6 +3,7 @@ public
 static/data
 static/video-images
 static/sitemap.xml
+static/rss.xml
 
 sw.*
 

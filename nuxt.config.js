@@ -1,6 +1,8 @@
 const path = require('path');
 const { promisify } = require('util');
 const glob = promisify(require('glob'));
+const fs = require('fs-extra');
+const sortBy = require('lodash/sortBy');
 
 const findPages = async () => {
     const articles = await glob('static/data/cikkek/*.json');
@@ -28,6 +30,7 @@ module.exports = {
         ],
         '~/modules/content-generator',
         '@nuxtjs/sitemap',
+        '@nuxtjs/feed',
     ],
     css: ['~/css/main.scss'],
     head: {
@@ -73,4 +76,46 @@ module.exports = {
             return routes.map(r => r.route);
         },
     },
+    feed: [
+        {
+            type: 'rss2',
+            path: '/rss.xml', // The route to your feed.
+            cacheTime: 1000 * 60 * 15,
+            async create(feed) {
+                feed.options = {
+                    title: 'Nézd meg! (nezdmeg.com)',
+                    link: 'https://nezdmeg.com/rss.xml',
+                    description: 'A legfrissebb cikkek, videok és érdekességek.',
+                    id: 'http://nezdmeg.com/',
+                    image: 'https://nezdmeg.com/logo_big.png',
+                };
+
+                const articleFiles = await glob('static/data/cikkek/*.json');
+                const articles = await Promise.all(
+                    articleFiles.map(async file => {
+                        const content = await fs.readFile(file, 'utf-8');
+                        return JSON.parse(content);
+                    })
+                );
+
+                // console.log(articles);
+
+                const sortedArticles = sortBy(articles, 'date')
+                    .reverse()
+                    .slice(0, 40);
+
+                sortedArticles.forEach(article => {
+                    feed.addItem({
+                        title: article.title,
+                        id: `https://nezdmeg.com${article.url}`,
+                        link: `https://nezdmeg.com${article.url}`,
+                        description: article.teaser,
+                        content: `<h1>${article.title}</h1><p>${article.teaser}</p><p><a href="https://nezdmeg.com${
+                            article.url
+                        }">Tovább a cikkhez</a></p>`,
+                    });
+                });
+            },
+        },
+    ],
 };
