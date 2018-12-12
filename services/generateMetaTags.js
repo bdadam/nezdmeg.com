@@ -2,7 +2,10 @@ export default ({ title, description, canonical, image }) => {
     const img =
         image && image.url
             ? [
-                  { property: 'og:image', content: image.url },
+                  {
+                      property: 'og:image',
+                      content: image.url[0] === '/' ? `https://nezdmeg.com${image.url}` : image.url,
+                  },
                   { property: 'og:image:width', content: image.width },
                   { property: 'og:image:height', content: image.height },
               ]
