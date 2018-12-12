@@ -109,6 +109,7 @@ module.exports = {
                         title: article.title,
                         id: `https://nezdmeg.com${article.url}`,
                         link: `https://nezdmeg.com${article.url}`,
+                        date: new Date(article.date),
                         description: article.teaser,
                         content: `<h1>${article.title}</h1><p>${article.teaser}</p><p><a href="https://nezdmeg.com${
                             article.url
