@@ -20,6 +20,7 @@ export default ({ title, description, canonical, image }) => {
             { hid: 'og:url', property: 'og:url', content: canonical },
             { hid: 'og:site_name', property: 'og:site_name', content: 'Nézd meg!' },
             { hid: 'og:locale', property: 'og:locale', content: 'hu_HU' },
+            { hid: 'fb:app_id', property: 'fb:app_id', content: '2241648436114870' },
             { hid: 'twitter:card', name: 'twitter:card', content: 'summary' },
             // { hid: 'twitter:site', name: 'twitter:site', content: '@ TODO' },
 
