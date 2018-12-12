@@ -120,6 +120,8 @@ export default {
             description: this.description || this.teaser,
             canonical: this.canonical,
             image: this.images.video,
+            tags: this.tags,
+            isArticle: true,
         });
     },
     components: {
