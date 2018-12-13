@@ -1,45 +1,35 @@
 <template>
-    <div>
-        <form
-            method="POST"
-            name="contact3"
-            @submit="submit"
-            netlify-honeypot="csapda"
-            data-netlify="true"
-        >
-            <input type="hidden" name="form-name" value="contact3">
-            <p v-if="sendSuccess">Az üzenetet sikeresen elküldtük.</p>
-            <p v-if="sendEerror">Az üzenetet nem sikerült elküldeni.</p>
+    <form
+        method="POST"
+        name="contact-form"
+        @submit="submit"
+        netlify-honeypot="csapda"
+        data-netlify="true"
+    >
+        <input type="hidden" name="form-name" value="contact-form">
+        <p v-if="sendSuccess" class="success-message">Az üzenetet sikeresen elküldtük.</p>
+        <p v-if="sendEerror" class="error-message">Az üzenetet nem sikerült elküldeni.</p>
 
-            <p hidden>
-                <label>
-                    Kérem, hagyja üresen ezt a mezőt!
-                    <input name="csapda">
-                </label>
-            </p>
-            <p class="form-field">
-                <label>
-                    Név (opcionális)
-                    <input type="text" name="name" v-model="name">
-                </label>
-            </p>
-            <p>
-                <label>
-                    Email (opcionális)
-                    <input type="text" name="email" v-model="email">
-                </label>
-            </p>
-            <p>
-                <label>
-                    Üzenet
-                    <textarea name="message" v-model="message" rows="4"></textarea>
-                </label>
-            </p>
-            <p>
-                <button type="”submit”">Send</button>
-            </p>
-        </form>
-    </div>
+        <label style="display: none;">
+            Kérem, hagyja üresen ezt a mezőt!
+            <input name="csapda">
+        </label>
+        <label class="required">
+            Üzenet
+            <textarea name="message" v-model="message" rows="4"></textarea>
+        </label>
+        <label>
+            Név (nem kötelező)
+            <input type="text" name="name" v-model="name">
+        </label>
+        <label>
+            Email (nem kötelező)
+            <input type="text" name="email" v-model="email">
+        </label>
+        <p>
+            <button type="”submit”" :disabled="submitButtonDisabled">Üzenetküldés</button>
+        </p>
+    </form>
 </template>
 <script>
 export default {
@@ -51,6 +41,11 @@ export default {
             sendSuccess: false,
             sendEerror: false,
         };
+    },
+    computed: {
+        submitButtonDisabled() {
+            return !this.message;
+        },
     },
     methods: {
         async submit(e) {
@@ -67,17 +62,11 @@ export default {
 
             try {
                 const action = e.target.action;
-                // const action = this.$refs.ssrform.action;
 
                 const result = await fetch(action, {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-                    // headers: { 'Content-Type': 'multipart/form-data' },
                     body: encodeData(e.target), //new FormData(e.target),
-                    // body: this.encode({
-                    //   'form-name': 'ask-team-vue',
-                    //   ...this.form
-                    // })
                 });
 
                 if (result.ok) {
@@ -92,6 +81,10 @@ export default {
         success() {
             this.sendSuccess = true;
             this.sendEerror = false;
+
+            this.name = '';
+            this.message = '';
+            this.email = '';
         },
         error() {
             this.sendSuccess = false;
@@ -112,7 +105,10 @@ form {
 label {
     display: block;
     width: 100%;
+    margin-bottom: 12px;
+}
 
+.required {
     font-weight: bold;
 }
 
@@ -124,6 +120,38 @@ textarea {
     border-radius: 3px;
     border: 1px solid #ddd;
     font-size: 1em;
+    margin-top: 3px;
+}
+
+button {
+    border: 0;
+    background-color: #a00;
+    padding: 12px 24px;
+    text-align: center;
+    color: #fff;
+    font-weight: bold;
+    font-size: 1.25rem;
+    border-radius: 4px;
+}
+
+button[disabled] {
+    background-color: #a88;
+}
+
+.success-message {
+    background-color: #3e6b27;
+    color: #fff;
+    padding: 12px;
+    margin-bottom: 20px;
+    font-weight: bold;
+}
+
+.error-message {
+    background-color: #8e0d41;
+    color: #fff;
+    padding: 12px;
+    margin-bottom: 20px;
+    font-weight: bold;
 }
 </style>
 
