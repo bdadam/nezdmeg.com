@@ -1,42 +1,51 @@
 <template>
-    <form
-        name="contact"
-        method="POST"
-        netlify-honeypot="csapda"
-        data-netlify="true"
-        @submit="submit"
-    >
-        <p v-if="sendSuccess">Az üzenetet sikeresen elküldtük.</p>
-        <p v-if="sendEerror">Az üzenetet nem sikerült elküldeni.</p>
+    <div>
+        <form
+            ref="ssrform"
+            style="display: none;"
+            name="contact"
+            method="POST"
+            netlify-honeypot="csapda"
+            data-netlify="true"
+        >
+            <input type="text" name="csapda">
+        </form>
 
-        <p hidden>
-            <label>
-                Kérem, hagyja üresen ezt a mezőt!
-                <input name="csapda">
-            </label>
-        </p>
-        <p class="form-field">
-            <label>
-                Név (opcionális)
-                <input type="text" name="name" v-model="name">
-            </label>
-        </p>
-        <p>
-            <label>
-                Email (opcionális)
-                <input type="text" name="email" v-model="email">
-            </label>
-        </p>
-        <p>
-            <label>
-                Üzenet
-                <textarea name="message" v-model="message" rows="4"></textarea>
-            </label>
-        </p>
-        <p>
-            <button type="”submit”">Send</button>
-        </p>
-    </form>
+        <no-ssr>
+            <form method="POST" @submit="submit">
+                <p v-if="sendSuccess">Az üzenetet sikeresen elküldtük.</p>
+                <p v-if="sendEerror">Az üzenetet nem sikerült elküldeni.</p>
+
+                <p hidden>
+                    <label>
+                        Kérem, hagyja üresen ezt a mezőt!
+                        <input name="csapda">
+                    </label>
+                </p>
+                <p class="form-field">
+                    <label>
+                        Név (opcionális)
+                        <input type="text" name="name" v-model="name">
+                    </label>
+                </p>
+                <p>
+                    <label>
+                        Email (opcionális)
+                        <input type="text" name="email" v-model="email">
+                    </label>
+                </p>
+                <p>
+                    <label>
+                        Üzenet
+                        <textarea name="message" v-model="message" rows="4"></textarea>
+                    </label>
+                </p>
+                <p>
+                    <button type="”submit”">Send</button>
+                </p>
+            </form>
+        </no-ssr>
+    </div>
 </template>
 <script>
 export default {
@@ -54,7 +63,10 @@ export default {
             e.preventDefault();
 
             try {
-                const result = await fetch(e.target.action, {
+                // const action = e.target.action;
+                const action = this.$refs.ssrform.action;
+
+                const result = await fetch(action, {
                     method: 'POST',
                     // headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
                     headers: { 'Content-Type': 'multipart/form-data' },
