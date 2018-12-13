@@ -1,55 +1,44 @@
 <template>
     <div>
         <form
-            ref="ssrform"
-            style="display: none;"
-            name="contact3"
             method="POST"
+            name="contact3"
+            @submit="submit"
             netlify-honeypot="csapda"
             data-netlify="true"
         >
             <input type="hidden" name="form-name" value="contact3">
-            <input type="text" name="csapda">
-            <input type="text" name="name">
-            <input type="text" name="email">
-            <textarea name="message" rows="4"></textarea>
+            <p v-if="sendSuccess">Az üzenetet sikeresen elküldtük.</p>
+            <p v-if="sendEerror">Az üzenetet nem sikerült elküldeni.</p>
+
+            <p hidden>
+                <label>
+                    Kérem, hagyja üresen ezt a mezőt!
+                    <input name="csapda">
+                </label>
+            </p>
+            <p class="form-field">
+                <label>
+                    Név (opcionális)
+                    <input type="text" name="name" v-model="name">
+                </label>
+            </p>
+            <p>
+                <label>
+                    Email (opcionális)
+                    <input type="text" name="email" v-model="email">
+                </label>
+            </p>
+            <p>
+                <label>
+                    Üzenet
+                    <textarea name="message" v-model="message" rows="4"></textarea>
+                </label>
+            </p>
+            <p>
+                <button type="”submit”">Send</button>
+            </p>
         </form>
-
-        <no-ssr>
-            <form method="POST" name="contact3" @submit="submit">
-                <input type="hidden" name="form-name" value="contact3">
-                <p v-if="sendSuccess">Az üzenetet sikeresen elküldtük.</p>
-                <p v-if="sendEerror">Az üzenetet nem sikerült elküldeni.</p>
-
-                <p hidden>
-                    <label>
-                        Kérem, hagyja üresen ezt a mezőt!
-                        <input name="csapda">
-                    </label>
-                </p>
-                <p class="form-field">
-                    <label>
-                        Név (opcionális)
-                        <input type="text" name="name" v-model="name">
-                    </label>
-                </p>
-                <p>
-                    <label>
-                        Email (opcionális)
-                        <input type="text" name="email" v-model="email">
-                    </label>
-                </p>
-                <p>
-                    <label>
-                        Üzenet
-                        <textarea name="message" v-model="message" rows="4"></textarea>
-                    </label>
-                </p>
-                <p>
-                    <button type="”submit”">Send</button>
-                </p>
-            </form>
-        </no-ssr>
     </div>
 </template>
 <script>
@@ -77,8 +66,8 @@ export default {
             };
 
             try {
-                // const action = e.target.action;
-                const action = this.$refs.ssrform.action;
+                const action = e.target.action;
+                // const action = this.$refs.ssrform.action;
 
                 const result = await fetch(action, {
                     method: 'POST',
