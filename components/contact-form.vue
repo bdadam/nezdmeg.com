@@ -3,18 +3,18 @@
         <form
             ref="ssrform"
             style="display: none;"
-            name="contact"
+            name="contact2"
             method="POST"
             netlify-honeypot="csapda"
             data-netlify="true"
         >
-            <input type="hidden" name="form-name" value="contact">
+            <input type="hidden" name="form-name" value="contact2">
             <input type="text" name="csapda">
         </form>
 
         <no-ssr>
-            <form method="POST" name="contact" @submit="submit">
-                <input type="hidden" name="form-name" value="contact">
+            <form method="POST" name="contact2" @submit="submit">
+                <input type="hidden" name="form-name" value="contact2">
                 <p v-if="sendSuccess">Az üzenetet sikeresen elküldtük.</p>
                 <p v-if="sendEerror">Az üzenetet nem sikerült elküldeni.</p>
 
