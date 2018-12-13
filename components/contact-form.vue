@@ -8,11 +8,13 @@
             netlify-honeypot="csapda"
             data-netlify="true"
         >
+            <input type="hidden" name="form-name" value="contact">
             <input type="text" name="csapda">
         </form>
 
         <no-ssr>
-            <form method="POST" @submit="submit">
+            <form method="POST" name="contact" @submit="submit">
+                <input type="hidden" name="form-name" value="contact">
                 <p v-if="sendSuccess">Az üzenetet sikeresen elküldtük.</p>
                 <p v-if="sendEerror">Az üzenetet nem sikerült elküldeni.</p>
 
