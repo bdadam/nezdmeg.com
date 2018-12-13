@@ -20,7 +20,8 @@ module.exports = {
                     // lang: 'hu-HU',
                 },
                 manifest: {
-                    name: 'Nézd meg!',
+                    name: 'Nézd meg! - nezdmeg.com',
+                    short_name: 'Nézd meg!',
                     lang: 'hu',
                 },
                 icon: {
