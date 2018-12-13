@@ -10,6 +10,9 @@
         >
             <input type="hidden" name="form-name" value="contact2">
             <input type="text" name="csapda">
+            <input type="text" name="name">
+            <input type="text" name="email">
+            <textarea name="message" rows="4"></textarea>
         </form>
 
         <no-ssr>
