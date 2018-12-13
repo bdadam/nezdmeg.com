@@ -1,0 +1,114 @@
+<template>
+    <form
+        name="contact"
+        method="POST"
+        netlify-honeypot="csapda"
+        data-netlify="true"
+        @submit="submit"
+    >
+        <p v-if="sendSuccess">Az üzenetet sikeresen elküldtük.</p>
+        <p v-if="sendEerror">Az üzenetet nem sikerült elküldeni.</p>
+
+        <p hidden>
+            <label>
+                Kérem, hagyja üresen ezt a mezőt!
+                <input name="csapda">
+            </label>
+        </p>
+        <p class="form-field">
+            <label>
+                Név (opcionális)
+                <input type="text" name="name" v-model="name">
+            </label>
+        </p>
+        <p>
+            <label>
+                Email (opcionális)
+                <input type="text" name="email" v-model="email">
+            </label>
+        </p>
+        <p>
+            <label>
+                Üzenet
+                <textarea name="message" v-model="message" rows="4"></textarea>
+            </label>
+        </p>
+        <p>
+            <button type="”submit”">Send</button>
+        </p>
+    </form>
+</template>
+<script>
+export default {
+    data() {
+        return {
+            name: '',
+            email: '',
+            message: '',
+            sendSuccess: false,
+            sendEerror: false,
+        };
+    },
+    methods: {
+        async submit(e) {
+            e.preventDefault();
+
+            try {
+                const result = await fetch(e.target.action, {
+                    method: 'POST',
+                    // headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+                    headers: { 'Content-Type': 'multipart/form-data' },
+                    body: new FormData(e.target),
+                    // body: this.encode({
+                    //   'form-name': 'ask-team-vue',
+                    //   ...this.form
+                    // })
+                });
+
+                if (result.ok) {
+                    this.success();
+                } else {
+                    this.error();
+                }
+            } catch (ex) {
+                this.error();
+            }
+        },
+        success() {
+            this.sendSuccess = true;
+            this.sendEerror = false;
+        },
+        error() {
+            this.sendSuccess = false;
+            this.sendEerror = true;
+        },
+    },
+};
+</script>
+<style lang="scss" scoped>
+form {
+    width: 100%;
+}
+
+.form-field {
+    width: 100%;
+}
+
+label {
+    display: block;
+    width: 100%;
+
+    font-weight: bold;
+}
+
+input,
+textarea {
+    display: block;
+    width: 100%;
+    padding: 10px 6px;
+    border-radius: 3px;
+    border: 1px solid #ddd;
+    font-size: 1em;
+}
+</style>
+
