@@ -64,15 +64,24 @@ export default {
         async submit(e) {
             e.preventDefault();
 
+            const encodeData = form => {
+                const data = new URLSearchParams();
+                for (const pair of new FormData(form)) {
+                    data.append(pair[0], pair[1]);
+                }
+
+                return data;
+            };
+
             try {
                 // const action = e.target.action;
                 const action = this.$refs.ssrform.action;
 
                 const result = await fetch(action, {
                     method: 'POST',
-                    // headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-                    headers: { 'Content-Type': 'multipart/form-data' },
-                    body: new FormData(e.target),
+                    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+                    // headers: { 'Content-Type': 'multipart/form-data' },
+                    body: encodeData(e.target), //new FormData(e.target),
                     // body: this.encode({
                     //   'form-name': 'ask-team-vue',
                     //   ...this.form
