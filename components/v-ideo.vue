@@ -5,6 +5,9 @@
             <iframe
                 :src="src"
                 title="Beágyazott video"
+                allowfullscreen
+                referrerpolicy="no-referrer"
+                sandbox="allow-scripts allow-same-origin allow-popups allow-presentation"
                 data-load="showIframe = true"
                 data-v-show="showIframe"
             ></iframe>
