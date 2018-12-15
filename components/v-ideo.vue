@@ -8,6 +8,7 @@
                 allowfullscreen
                 referrerpolicy="no-referrer"
                 sandbox="allow-scripts allow-same-origin allow-popups allow-presentation"
+                allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
                 data-load="showIframe = true"
                 data-v-show="showIframe"
             ></iframe>
