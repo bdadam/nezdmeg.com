@@ -1,7 +1,9 @@
 {
     "name": "nezdmeg.com",
     "version": "2.0.0",
-    "scripts": {},
+    "scripts": {
+        "dev": "nuxt"
+    },
     "private": true,
     "repository": {
         "type": "git",
