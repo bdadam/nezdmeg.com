@@ -71,6 +71,7 @@ module.exports = {
     sitemap: {
         path: '/sitemap.xml',
         hostname: 'https://nezdmeg.com',
+        exclude: ['/impresszum'],
         generate: true,
         async routes() {
             const routes = await findPages();
