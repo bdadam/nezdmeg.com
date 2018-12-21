@@ -11,7 +11,7 @@ tags:
   - furcsa
 metaDescription: ''
 ---
-Nem mindennapi munkaköröket gyűjtött össze a [https://www.youtube.com/channel/UCEjwheEK9lMWgQOKFGgr0xw](Tízes lista):
+Nem mindennapi munkaköröket gyűjtött össze a [Tízes lista](https://www.youtube.com/channel/UCEjwheEK9lMWgQOKFGgr0xw):
 
 - Királyi WC-s
 - Hivatásos hullarabló
