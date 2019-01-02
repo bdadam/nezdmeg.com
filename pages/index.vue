@@ -21,19 +21,9 @@
             </ul>
         </div>
         <div class="sidebar">
-            <!-- <no-ssr>
-                <div class="sidebar-box">
-                    <p class="headline-3">Kövess minket a Facebookon is</p>
-                    <iframe
-                        ref="fbif"
-                        style="border: 0; overflow:hidden; width: 100%; height: 154px;"
-                        scrolling="no"
-                        frameborder="0"
-                        allowtransparency="true"
-                        allow="encrypted-media"
-                    ></iframe>
-                </div>
-            </no-ssr>-->
+            <div class="sidebar-box">
+                <like-box/>
+            </div>
         </div>
     </div>
 </template>
@@ -41,17 +31,12 @@
 import generateMetaTags from '~/services/generateMetaTags';
 import { pageview } from '~/services/tracking';
 
+import LikeBox from '~/components/like-box';
+
 export default {
     layout: 'page',
     data() {
-        return { title: 'Home Page', articles: [], sidebarWidth: 0 };
-    },
-
-    updated() {
-        if (!this.$refs.fbif.src) {
-            const width = this.$refs.fbif.clientWidth;
-            this.$refs.fbif.src = `https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2Fnezdmegcom%2F&tabs=&width=${width}&height=154&small_header=true&adapt_container_width=true&hide_cover=false&show_facepile=true&appId=2241648436114870`;
-        }
+        return { title: 'Home Page', articles: [] };
     },
 
     async asyncData({ route, payload }) {
@@ -83,6 +68,9 @@ export default {
                 height: 1045,
             },
         });
+    },
+    components: {
+        LikeBox,
     },
 };
 </script>

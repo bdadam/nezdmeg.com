@@ -18,6 +18,9 @@
             <share-buttons class="share-buttons" :title="title" :url="canonical"/>
         </article>
         <aside class="sidebar">
+            <div class="sidebar-box">
+                <like-box/>
+            </div>
             <ul>
                 <li v-for="recommendation in recommendations" :key="recommendation.title">
                     <nuxt-link
@@ -44,6 +47,7 @@ import { pageview } from '~/services/tracking';
 
 import AstRenderer from '~/components/ast-renderer';
 import ShareButtons from '~/components/share-buttons';
+import LikeBox from '~/components/like-box';
 
 export default {
     layout: 'page',
@@ -127,6 +131,7 @@ export default {
     components: {
         AstRenderer,
         ShareButtons,
+        LikeBox,
     },
 };
 </script>
