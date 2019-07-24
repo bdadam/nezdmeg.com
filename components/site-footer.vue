@@ -2,7 +2,7 @@
     <div class="site-footer">
         <nuxt-link to="/impresszum">Impresszum</nuxt-link>
         <nuxt-link to="/impresszum#contact-form">Kapcsolat</nuxt-link>
-        <p>2018 &copy; NezdMeg.com</p>
+        <p>2019 &copy; NezdMeg.com</p>
     </div>
 </template>
 <style>
