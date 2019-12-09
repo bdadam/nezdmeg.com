@@ -1,5 +1,5 @@
 ---
-title: Star Trek képstabilizátorral
+title: Star Trek kisimítva képstabilizátorral
 date: '2019-12-10 00:43'
 teaser: >-
   A Star Trek akciójelenetei telis-tele vannak rázkódásos effektekkel (camera
