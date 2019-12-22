@@ -53,5 +53,8 @@
         "speakingurl": "^14.0.1",
         "unified": "^8.3.2",
         "vfile": "^4.0.1"
+    },
+    "volta": {
+        "node": "8.17.0"
     }
 }
