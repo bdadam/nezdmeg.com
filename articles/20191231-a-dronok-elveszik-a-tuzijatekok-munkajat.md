@@ -12,11 +12,11 @@ tags:
 ---
 Összegyűjtöttünk néhány videót, melyek bemutatják, hogyan néz ki egy ilyen drón-show és azt, hogy hogyan is néz ki mindez a kulisszák mögött.
 
+https://www.youtube.com/watch?v=BjRb6u_PQwQ
+
 https://www.youtube.com/watch?v=62QPXsZo2pg
 
 https://www.youtube.com/watch?v=HgQuZhogxmo
-
-https://www.youtube.com/watch?v=BjRb6u_PQwQ
 
 https://www.youtube.com/watch?v=7i-rRIE4v4M
 
