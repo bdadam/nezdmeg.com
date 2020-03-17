@@ -24,6 +24,12 @@ https://www.youtube.com/watch?v=EHbTqMbHxwk
 
 A videókat a [Zállatorvos nevű youtuber](https://www.youtube.com/channel/UCwomXLDF7gDJQboAwxvwYNg) készítette.
 
+Update:
+
+A Washington Post készített egy érdekes szimulációt, ami bemutatja, hogy miért hatékony a távolságtartás és az önkéntes karanténba vonulás:
+
+https://www.washingtonpost.com/graphics/2020/world/corona-simulator/
+
 Összefoglalva:
 - A koronavírus valószínűleg nem fog zombi apokalipszist okozni
 - DE komolyan kell venni
