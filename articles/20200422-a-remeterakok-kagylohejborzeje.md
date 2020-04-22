@@ -26,3 +26,7 @@ A fentebbi, szintén nagyon érdekes videó pedig megmutatja, hogyan cserél egy
 Bónusz videó arról, ahogy egy nagy remeterák új házba költözik.
 
 https://www.youtube.com/watch?v=elhHahLJ_10
+
+Az alábbi videó első része azt mutatja, ahogy egy hatalmas tengeri csiga megeszik egy kisebbet. A másik felében pedig láthatjuk, hogy szegény kis csigát még szinte meg sem ette a nagyobb, mikor a remeterákok már elkezdenek harcolni a hamarosan megüresedő házért. Az egyikük annyira vakmerő, hogy még akkor bemászik a megüresedett csigaházba, amikor az még a másik csiga szájában van. Bátorsága ebben az esetben kifizetődik, ugyanis meg tudja kaparintani az új házat és el tud vele iszkolni. Az új ház pedig nagyobb is, erősebb is és könnyebb is, mint a régi háza.
+
+https://www.youtube.com/watch?v=P_hBp1sEwfs
