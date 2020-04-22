@@ -4,7 +4,7 @@ date: '2020-04-22 23:54'
 teaser: >-
   Az alábbi 50 híres művet szinte mindenki hallotta már, hiszen amellett hogy
   sokuk az alapműveltség része, filmek, reklámok betétzenéjeként is feltűnnek.
-  És persze szépek. Érdemes végigböngészni a listát és
+  És persze szépek. Érdemes végigböngészni a listát.
 tags:
   - zene
   - klasszikus
