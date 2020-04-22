@@ -163,6 +163,11 @@ export default {
     .video-player {
         margin-bottom: 12px;
     }
+    ul,
+    ol {
+        // list-style-position: inside;
+        padding-left: 40px;
+    }
 }
 
 .article-recommendation {
