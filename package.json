@@ -33,7 +33,7 @@
         "gray-matter": "^4.0.1",
         "jsdom": "^15.1.1",
         "lodash": "^4.17.13",
-        "markdown-it": "^9.0.1",
+        "markdown-it": "^12.3.2",
         "marked": "^0.7.0",
         "minireset.css": "^0.0.5",
         "moment": "^2.22.2",
