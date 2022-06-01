@@ -49,7 +49,7 @@
         "remark-parse": "^7.0.0",
         "remark-parse-yaml": "^0.0.2",
         "sass-loader": "^7.1.0",
-        "sharp": "^0.22.1",
+        "sharp": "^0.30.5",
         "speakingurl": "^14.0.1",
         "unified": "^8.3.2",
         "vfile": "^4.0.1"
